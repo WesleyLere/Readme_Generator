@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const generateMarkdown = require('./utils/generateMarkdown');
 // TODO: Create an array of questions for user input
-const qs = [
+const questions = [
     {
         type: 'input',
         message: 'Enter the title of your project!',
@@ -29,7 +29,7 @@ const qs = [
         type: 'list',
         message: 'What license are you using?',
         name: 'license',
-        choices: ['MIT', 'APACHE', 'GPL', 'None'],
+        choices: ['mit', 'apache-2.0', 'gpl-3.0', 'None'],
     },
     {
         type: 'input',
@@ -53,20 +53,16 @@ const qs = [
     },
     {
         type: 'input',
-        message: 'Enter credits',
+        message: 'Enter credits other credits if any.',
         name: 'credits'
     }
 ]
-// TODO: Create a function to write README file
-// function writeToFile(fileName, data) {
-   
-// }
 
 // TODO: Create a function to initialize app
 function init() {
-inquirer.prompt(qs)
+inquirer.prompt(questions)
 .then((data) => {
-     fs.writeFile('README.md',generateMarkdown(data), (err) =>
+     fs.writeFile('generatedREADME.md',generateMarkdown(data), (err) =>
       err ? console.log(err) : console.log('Readme generated!')
     );
     
